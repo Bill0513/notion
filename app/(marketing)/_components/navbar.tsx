@@ -4,8 +4,10 @@ import { useScrollTop } from "@/hooks/use-scroll-top";
 import { cn } from "@/lib/utils";
 import { Logo } from "./logo";
 import { ModeToggle } from "@/components/mode-toggle";
-import { SignInButton } from "@clerk/clerk-react";
+import { SignInButton, UserButton } from "@clerk/clerk-react";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/spinner";
+import Link from "next/link";
 
 export const Navbar = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
@@ -21,7 +23,9 @@ export const Navbar = () => {
     >
       <Logo></Logo>
       <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
-        {isLoading && <p>Loading...</p>}
+        {/* loading动画 */}
+        {isLoading && <Spinner></Spinner>}
+        {/* 未登录 */}
         {!isAuthenticated && !isLoading && (
           <>
             <SignInButton mode="modal">
@@ -32,6 +36,15 @@ export const Navbar = () => {
             <SignInButton mode="modal">
               <Button size="sm">Get Jotion Free</Button>
             </SignInButton>
+          </>
+        )}
+        {/* 已登录 */}
+        {isAuthenticated && !isLoading && (
+          <>
+            <Button variant="ghost" size="sm" asChild>
+              <Link href="/document">Enter Jotion</Link>
+            </Button>
+            <UserButton afterSignOutUrl="/" />
           </>
         )}
 
