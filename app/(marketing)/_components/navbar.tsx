@@ -42,7 +42,7 @@ export const Navbar = () => {
         {isAuthenticated && !isLoading && (
           <>
             <Button variant="ghost" size="sm" asChild>
-              <Link href="/document">Enter Jotion</Link>
+              <Link href="/documents">Enter Jotion</Link>
             </Button>
             <UserButton afterSignOutUrl="/" />
           </>

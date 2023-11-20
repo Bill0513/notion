@@ -38,7 +38,7 @@ export const Heading = () => {
       {/* 已登录 */}
       {isAuthenticated && !isLoading && (
         <Button asChild>
-          <Link href="/document">
+          <Link href="/documents">
             Enter Jotion <ArrowRight className="h-4 w-4 ml-2"></ArrowRight>
           </Link>
         </Button>
