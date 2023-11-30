@@ -14,6 +14,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import {useSearch} from '@/hooks/use-search.tsx'
 
 import { UserItem } from "./user-item.tsx";
 import { Item } from "./item.tsx";
@@ -30,6 +31,7 @@ export const Navigation = () => {
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
   const create = useMutation(api.documents.create);
+  const search = useSearch()
 
   const isResizingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -152,7 +154,7 @@ export const Navigation = () => {
         </div>
         <div>
           <UserItem />
-          <Item label="Search" icon={Search} onClick={() => {}} isSearch />
+          <Item label="Search" icon={Search} onClick={search.onOpen} isSearch />
           <Item label="Settings" icon={Settings} onClick={() => {}} />
           <Item onClick={handleCreate} label="New Page" icon={PlusCircle} />
         </div>
