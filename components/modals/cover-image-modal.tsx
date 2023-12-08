@@ -29,8 +29,12 @@ export const CoverImageModal = () => {
     if (file) {
       setIsSubmitting(true);
       setFile(file);
+
       const res = await edgestore.publicFiles.upload({
         file,
+        options: {
+          replaceTargetUrl: coverImage.url,
+        },
       });
 
       await update({
@@ -38,7 +42,7 @@ export const CoverImageModal = () => {
         coverImage: res.url,
       });
 
-      onClose()
+      onClose();
     }
   };
 
