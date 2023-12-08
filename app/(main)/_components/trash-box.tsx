@@ -43,7 +43,7 @@ export const TrashBox = () => {
   };
 
   const onRemove = (documentId: Id<"documents">) => {
-    const promise = restore({ id: documentId });
+    const promise = remove({ id: documentId });
     toast.promise(promise, {
       loading: "Removing note...",
       success: "Note Removed!",
